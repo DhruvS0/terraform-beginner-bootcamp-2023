@@ -185,13 +185,20 @@ This will run a plan and pass the changeset to be executed by Terraform. Apply s
 
 If we want to automatically approve an apply we can provide the auto approve flag. eg., `terraform apply --auto-approve`
 
-### Terraform Lock Files
+#### Terraform Destroy
+`terraform destroy`
+
+This will destroy resources. 
+
+You can also use the auto approve flag to skip the approve prompt. eg., `terraform destroy --auto-approve`
+
+#### Terraform Lock Files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used for this project.
 
 The Terraform lock files **should be committed** to the Version Control System (VCS) eg., GitHub
 
-### Terraform State Files
+#### Terraform State Files
 
 `.terraform.tfstate` contain information about the current state of the infrastructure.
 
@@ -199,6 +206,9 @@ This file **should not be committed** to the VCS. This file can contain the sens
 
 `.terraform.tfstate.backup` is the previous state file state. 
 
-### Terraform Directory
+#### Terraform Directory
 
-`.terraform` directory contains binaries of terraform providers. 
+`.terraform` directory contains binaries of terraform providers.
+
+#### AWS S3 Bucket 
+The S3 Bucket name cannot have any upper case letter, so in the random string resource mentioned to not use Upper case in the string and rest can be used for the name of the bucket.
