@@ -210,5 +210,30 @@ This file **should not be committed** to the VCS. This file can contain the sens
 
 `.terraform` directory contains binaries of terraform providers.
 
-#### AWS S3 Bucket 
+##### AWS S3 Bucket 
 The S3 Bucket name cannot have any upper case letter, so in the random string resource mentioned to not use Upper case in the string and rest can be used for the name of the bucket.
+
+## Issues with Terraform Cloud Login and Gitpod Workspace
+When attempting to run `terraform login`, it will launch bash a wizwig view to generate a token. However it does not work as expected in the Gitpod VsCode in the browser. 
+
+The workaround is to manually generate a token in Terraform Cloud.
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+``` 
+Then create and open the file manually here:
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+Provide the following code and replace your generated token in the code.
+
+```json
+{
+    "credentials": {
+        "app.terraform.io": {
+            "token": "Enter your generated token"
+        }
+    }
+}
+```
+
