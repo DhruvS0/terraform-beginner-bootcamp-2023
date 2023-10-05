@@ -208,4 +208,7 @@ This file **should not be committed** to the VCS. This file can contain the sens
 
 #### Terraform Directory
 
-`.terraform` directory contains binaries of terraform providers. 
+`.terraform` directory contains binaries of terraform providers.
+
+#### AWS S3 Bucket 
+The S3 Bucket name cannot have any upper case letter, so in the random string resource mentioned to not use Upper case in the string and rest can be used for the name of the bucket.
