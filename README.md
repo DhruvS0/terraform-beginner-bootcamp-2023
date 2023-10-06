@@ -236,4 +236,5 @@ Provide the following code and replace your generated token in the code.
     }
 }
 ```
+We have automated this workaround with the following bash script [bin/generate_tfrc/credentials](./bin/generate_tfrc_credentials.sh)
 
