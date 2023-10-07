@@ -1,4 +1,4 @@
-# Terraform Beginner Bootcamp 2023 - Week 0
+# Terraform Beginner Bootcamp 2023 - Week  0
 
 - [Semantic Versioning :mage:](#semantic-versioning--mage-)
 - [Install Terraform CLI](#install-terraform-cli)
