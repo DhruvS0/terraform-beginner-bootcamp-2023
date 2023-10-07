@@ -1,5 +1,13 @@
 # Terraform Beginner Bootcamp 2023
 
+## Table of Contents
+- [Semantic Versioning](#semantic-versioning-mage)
+- [Install the Terraform CLI](#install-terraform-cli)
+    - [Considerations for Terraform CLI change](#considerations-for-terraform-cli-changes)
+- [Install the AWS CLI](#install-aws-cli)
+- [Terraform Basic](#terraform-basics)
+
+
 ## Semantic Versioning :mage: 
 This project is going to utilize semantic versioning for it's tagging.
 [semver.org](https://semver.org)
