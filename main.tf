@@ -1,11 +1,11 @@
 terraform {
-  # cloud {
-  #   organization = "dhruvshah_dms"
+  cloud {
+    organization = "dhruvshah_dms"
 
-  #   workspaces {
-  #     name = "terra-house-1"
-  #   }
-  # }
+    workspaces {
+      name = "terraform-cloud"
+    }
+  }
 }
 
 module "terrahouse_aws" {
