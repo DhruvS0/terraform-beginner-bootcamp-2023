@@ -1,74 +1,71 @@
-// package main: Declares the package name.
+// package main: Declares the package name. 
 // The main package is special in Go, it's where the execution of the program starts.
 package main
 
-// fmt is short for format, it contains functions for formatted I/O.
+// fmt is short format, it contains functions for formatted I/O.
 import (
-	"bytes
-	"context
-	"encoding/json
-	"net/http
-	"log
-	"fmt
+	"bytes"
+	"context"
+	"encoding/json"
+	"net/http"
+	"log"
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
-
-// func main(): Defines the main function, the entry point of the app.
+// func main(): Defines the main function, the entry point of the app. 
 // When you run the program, it starts executing from this function.
 func main() {
-	// Use the plugin package to serve the Terraform plugin.
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: Provider, // Define the Provider function to create and configure the plugin.
+		ProviderFunc: Provider,
 	})
-
-	// fmt.Println is used to print a message to standard output.
-	fmt.Println("Hello, world!") // Print a greeting message.
+	// Format.PrintLine
+	// Prints to standard output
+	fmt.Println("Hello, world!")
 }
 
-// Config is a struct that represents the configuration for the Terraform provider.
 type Config struct {
-	Endpoint  string // The endpoint for an external service.
-	Token     string // Bearer token for authorization.
-	UserUuid  string // UUID for configuration.
+	Endpoint string
+	Token string
+	UserUuid string
 }
 
-// Provider is a function that returns a Terraform schema.Provider.
-// In Go, a function with a titlecase name is exported.
+// in golang, a titlecase function will get exported.
 func Provider() *schema.Provider {
 	var p *schema.Provider
 	p = &schema.Provider{
-		ResourcesMap: map[string]*schema.Resource{
-			"terratowns_home": Resource(), // Define a resource called "terratowns_home."
+		ResourcesMap:  map[string]*schema.Resource{
+			"terratowns_home": Resource(),
 		},
-		DataSourcesMap: map[string]*schema.Resource{},
+		DataSourcesMap:  map[string]*schema.Resource{
+
+		},
 		Schema: map[string]*schema.Schema{
 			"endpoint": {
-				Type:        schema.TypeString,
-				Required:    true,
-				Description: "The endpoint for the external service",
+				Type: schema.TypeString,
+				Required: true,
+				Description: "The endpoint for hte external service",
 			},
 			"token": {
-				Type:        schema.TypeString,
-				Sensitive:   true, // Make the token sensitive to hide it in the logs.
-				Required:    true,
+				Type: schema.TypeString,
+				Sensitive: true, // make the token as sensitive to hide it the logs
+				Required: true,
 				Description: "Bearer token for authorization",
 			},
 			"user_uuid": {
-				Type:        schema.TypeString,
-				Required:    true,
+				Type: schema.TypeString,
+				Required: true,
 				Description: "UUID for configuration",
-				ValidateFunc: validateUUID, // Use the validateUUID function to validate the UUID.
+				ValidateFunc: validateUUID,
 			},
 		},
 	}
-	p.ConfigureContextFunc = providerConfigure(p) // Define a function for configuring the provider.
+	p.ConfigureContextFunc = providerConfigure(p)
 	return p
 }
 
-// validateUUID is a function for validating the format of a UUID.
 func validateUUID(v interface{}, k string) (ws []string, errors []error) {
 	log.Print("validateUUID:start")
 	value := v.(string)
@@ -79,13 +76,12 @@ func validateUUID(v interface{}, k string) (ws []string, errors []error) {
 	return
 }
 
-// providerConfigure is a function that configures the provider using the provided configuration values.
 func providerConfigure(p *schema.Provider) schema.ConfigureContextFunc {
-	return func(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
+	return func(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics ) {
 		log.Print("providerConfigure:start")
 		config := Config{
 			Endpoint: d.Get("endpoint").(string),
-			Token:    d.Get("token").(string),
+			Token: d.Get("token").(string),
 			UserUuid: d.Get("user_uuid").(string),
 		}
 		log.Print("providerConfigure:end")
