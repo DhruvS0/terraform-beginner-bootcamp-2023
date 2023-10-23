@@ -57,6 +57,6 @@ Master trekking techniques and acclimatize to changing altitudes. Stay tuned for
 Experience the natural beauty and serenity of Kedarkanta Trek!
 DESCRIPTION
   domain_name = module.home_kedarkanta_hosting.domain_name
-  town = "missingo"
+  town = "the-nomad-pad"
   content_version = var.kedarkanta.content_version
 }

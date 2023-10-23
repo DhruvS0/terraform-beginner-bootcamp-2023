@@ -9,4 +9,12 @@
 ## Extras
 - [Github Markdown TOC Generator](https://ecotrust-canada.github.io/markdown-toc/)
 
+## My Completed Homes
+**My first Test house!**
+![Test-House1](image.png)
+![Test-House1](image-1.png)
+
+**My second Test house!**
+![Test-House2](image-2.png)
+![Test-House2](image-3.png)
 
