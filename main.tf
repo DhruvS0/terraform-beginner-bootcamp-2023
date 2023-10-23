@@ -5,13 +5,13 @@ terraform {
       version = "1.0.0"
     }
   }
-  # cloud {
-  #   organization = "dhruvshah_dms"
+  cloud {
+    organization = "dhruvshah_dms"
 
-  #   workspaces {
-  #     name = "terra-house-1"
-  #   }
-  # }
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 }
 
 provider "terratowns" {
@@ -20,13 +20,11 @@ provider "terratowns" {
   token= var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_valorant_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.valorant.public_path
+  content_version = var.valorant.content_version
 }
 
 resource "terratowns_home" "home" {
@@ -37,9 +35,28 @@ Engage in strategic battles, choose unique Agents, and coordinate with your team
 Master shooting mechanics and use Agent abilities. Stay updated with patches for evolving gameplay.
 Enjoy the competitive experience!
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
-# domain_name = "2fdq3gz.cloudfront.net"
+  domain_name = module.home_valorant_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.valorant.content_version
 }
 
+module "home_kedarkanta_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.kedarkanta.public_path
+  content_version = var.kedarkanta.content_version
+}
+
+resource "terratowns_home" "home1" {
+  name = "Kedarkanta Trek - Topmost trek of Uttarakhand Himalayas!"
+  description = <<DESCRIPTION
+Kedarkanta Trek is a thrilling high-altitude adventure in the heart of the Indian Himalayas. 
+Set out on a breathtaking journey through snow-capped peaks and pristine wilderness. 
+Trek with experienced guides, immerse in local culture, and camp under the starlit sky. 
+Master trekking techniques and acclimatize to changing altitudes. Stay tuned for weather updates and safety precautions.
+Experience the natural beauty and serenity of Kedarkanta Trek!
+DESCRIPTION
+  domain_name = module.home_kedarkanta_hosting.domain_name
+  town = "missingo"
+  content_version = var.kedarkanta.content_version
+}
